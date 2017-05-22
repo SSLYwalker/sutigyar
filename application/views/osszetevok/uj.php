@@ -20,3 +20,8 @@
   </div>
   <button type="submit" class="btn btn-default">Felvitel</button>
 </form>
+<script>
+  // Replace the <textarea id="editor1"> with a CKEditor
+  // instance, using default configuration.
+  CKEDITOR.replace( 'osszetevoLeirasaTextarea', {language: 'hu', extraPlugins : 'confighelper'});
+</script>

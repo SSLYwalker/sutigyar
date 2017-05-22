@@ -4,11 +4,19 @@
 	*/
 	class Receptek extends CI_Controller
 	{
-		public function index(){
-			$adattomb['cim'] = 'Legutóbbi Receptek';
+		public function __construct()
+    {
+        parent::__construct();  //make sure you extend the parent constructor
+				$this->lang->load('receptek');
+        //Your code:
+        //if( ! $this->session->userdata('lang') )
+        //    $this->session->set_userdata('lang','ar');
+    }
 
+		public function index(){
+			$cim = $this->lang->line('legutobbi_receptek');
+			$adattomb['cim'] = $cim;
 			$adattomb['receptek'] = $this->Recept_model->get_receptek();
-			//print_r($adattomb['receptek'], FALSE);
 
 			$this->load->view('sablonok/fejlec');
 			$this->load->view('receptek/index', $adattomb);
@@ -34,6 +42,11 @@
 
 		public function uj()
 		{
-			echo 'uj';
+			$cim = $this->lang->line('uj_recept_felvitele');
+			$adattomb['cim'] = $cim;
+
+			$this->load->view('sablonok/fejlec');
+			$this->load->view('receptek/uj', $adattomb);
+			$this->load->view('sablonok/lablec');
 		}
 	}
